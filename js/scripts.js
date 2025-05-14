@@ -22,7 +22,7 @@ let pokemonRepository = (function () {
       return pokemonList;
     }
     function showDetails(pokemon){
-      console.log(pokemon);
+      console.log(pokemon.name);
     }
 
     function addListItem(pokemon){
