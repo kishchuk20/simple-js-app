@@ -1,18 +1,37 @@
-let pokemonList = [
+let pokemonRepository = (function () {
+  let pokemonList = [
     { name: "Bulbasaur", height: 0.7 },
     { name: "Charizard", height: 1.7 },
-    { name: "Pikachu", height: 0.4 }
+    { name: "Pikachu", height: 0.4 },
+    { name: "Charmander", height: 0.6 },
+    { name: "Golbat", height: 1.6 },
+    { name: "Alakazam", height: 1.5 },
   ];
-
-// Write Pokemon's name and height
-  for (let i=0; i<pokemonList.length; i++){
-    let pokemon = pokemonList[i];
-    let output = pokemon.name + " (height: " + pokemon.height + ")";
-
-    // finds a big Pokemon
-    if (pokemonList[i].height >1){
-      output += " - Wow,that's big!";
-      console.log(pokemonList[i].name.height + " Wow,that's big!")
+    function add(pokemon) {
+      if (
+        typeof pokemon === "object" &&
+        "name" in pokemon &&
+        "height" in pokemon &&
+        Object.keys(pokemon).length === 2
+      ) {
+      pokemonList.push(pokemon);
+    } 
     }
-    document.write("<p>" + output + "</p>");
+
+   function getAll(){
+      return pokemonList;
+    }
+    return {
+      add: add,
+      getAll: getAll
+  };
+}) ()
+
+pokemonRepository.getAll().forEach(function(pokemon){
+  let output = pokemon.name + "(height: " + pokemon.height + ")";
+  if (pokemon.height > 1.5) {
+    output += " - Wow, that's big!";
   }
+
+  document.write("<p>" + output + "</p>");
+});
